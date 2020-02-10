@@ -1,0 +1,53 @@
+<html>
+
+  <head>
+    <title>CSRF Lab</title>
+  </head>
+
+  <body>
+    <h1>CSRF Lab</h1>
+    <form action="http://localhost:5000" method="post">
+      <h2>URL Encoded-Form</h2>
+      <label>Name</label>
+      <input name="name" type="text" />
+      <label>Password</label>
+      <input name="password" type="password" />
+      <button type="submit">submit</button>
+    </form>
+    <div>
+      <h2>JSON Form</h2>
+      <label>Name</label>
+      <input id="json-name" name="name" type="text" />
+      <label>Password</label>
+      <input id="json-pass" name="password" type="password" />
+      <button id="submitbtn">submit</button>
+    </div>
+    <p><a target="_blank" href="https://twitter.com/aunyks">@aunyks</a></p>
+    <script>
+      window.onload = () => {
+        console.log('loaded')
+        document
+          .getElementById('submitbtn')
+          .addEventListener('click', async () => {
+            console.log('clicked')
+            const name = document.getElementById('json-name').value
+            const pass = document.getElementById('json-pass').value
+            const res = await fetch('http://localhost:5000', {
+              method: 'POST',
+              credentials: 'include',
+              redirect: 'follow',
+              mode: 'no-cors',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                name: name,
+                pass: pass
+              })
+            })
+          })
+      }
+    </script>
+  </body>
+
+</html>
