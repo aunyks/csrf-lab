@@ -17,7 +17,7 @@ This tests for a browser's handling of form data as it's being passed across ori
 **[4]** In the third window, enter the `7000` directory and execute `micro -l tcp://localhost:7000 index.js`. This will start another HTTP server that will act as the target server API.  
 This is what the three commands can look like side by side.
 ![terminal examples](https://raw.githubusercontent.com/aunyks/csrf-lab/master/csrf-test.png)
-If requests from `localhost:3000` reach this origin via redirection from `localhost:5000`, the browser will let you exploit CSRF vulnerabilities across origins.  
+If requests from `localhost:3000` reach `localhost:7000` via redirection from `localhost:5000`, the browser will let you forge certain requests across origins.  
 **[5]** In your favorite browser, visit `localhost:3000` and submit one of the forms to observe effects in the terminals.
 
 ## This makes no sense.
